@@ -10,8 +10,8 @@ const AddButtonAndFilter = () => {
     const titleRef: RefObject<HTMLInputElement> = useRef(null);
 
     const HandleOpenModal = () => {
-        setModal(true)
-    }
+        setModal(true);
+    };
 
     const HandleOnSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -32,6 +32,7 @@ const AddButtonAndFilter = () => {
         localStorage.setItem("ListItems", JSON.stringify(listItems));
         titleRef.current!.value = "";
         setModal(false);
+        window.location.reload(); 
     };
 
 
@@ -40,11 +41,9 @@ const AddButtonAndFilter = () => {
             <AddButtonAndFilterContainer className="w-100 d-flex align-items-center justify-content-between">
                 {!modal ? (
                     <Button onClick={HandleOpenModal} >Adicionar Tarefa</Button>
-                ) :
-                    (
-                        <Button disabled>Adicionar Tarefa</Button>
-                    )
-                }
+                ) : (
+                    <Button disabled>Adicionar Tarefa</Button>
+                )}
                 <Filter />
             </AddButtonAndFilterContainer>
             {modal && (
@@ -54,7 +53,7 @@ const AddButtonAndFilter = () => {
                 </form>
             )}
         </>
-    )
-}
+    );
+};
 
 export default AddButtonAndFilter;

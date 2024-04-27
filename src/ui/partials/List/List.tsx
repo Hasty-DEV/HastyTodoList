@@ -21,6 +21,13 @@ const List = () => {
         localStorage.setItem("ListItems", JSON.stringify(updatedItems));
     };
 
+    const handleDeleteItem = (index: number) => {
+        const updatedItems = [...items];
+        updatedItems.splice(index, 1);
+        setItems(updatedItems);
+        localStorage.setItem("ListItems", JSON.stringify(updatedItems));
+    };
+
     return (
         <ListContainer>
             {items.map((item, index) => (
@@ -29,6 +36,7 @@ const List = () => {
                     ItemTitle={item.ItemTitle}
                     ItemData={item.ItemData}
                     isChecked={item.isChecked}
+                    onDelete={() => handleDeleteItem(index)}  
                     onCheck={(isChecked) => handleItemCheck(index, isChecked)}
                 />
             ))}
