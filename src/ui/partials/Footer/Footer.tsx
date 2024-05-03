@@ -8,7 +8,7 @@ const Footer = () => {
         <hr />
         <div className="d-flex flex-column justify-content-center align-items-center">
           <p>
-            Todos Direitos Reservados a <a href="https://github.com/Jefflds/todo-list">Jefflds</a>, 2024.
+            Todos Direitos Reservados a <a href="https://github.com/Hasty-DEV/HastyTodoList">HastyDEV</a>, 2024.
           </p>
         </div>
       </Container>

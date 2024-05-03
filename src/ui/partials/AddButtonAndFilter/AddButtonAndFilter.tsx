@@ -1,40 +1,11 @@
-import { Button } from "react-bootstrap";
-import { AddButtonAndFilterContainer } from "../../styles/AddButtonAndFilter/AddButtonAndFilter.style";
+import useAddButtonAndFilter from "../../../data/hooks/useAddButtonAndFilter/useAddButtonAndFilter";
 import Filter from "../../components/Filter/Filter";
-import { FormEvent, RefObject, useRef, useState } from "react";
+import { AddButtonAndFilterContainer } from "../../styles/AddButtonAndFilter/AddButtonAndFilter.style";
+import { Button } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
-import { ItemType } from "../../../data/@types/Item/Item.type";
 
 const AddButtonAndFilter = () => {
-    const [modal, setModal] = useState<boolean>();
-    const titleRef: RefObject<HTMLInputElement> = useRef(null);
-
-    const HandleOpenModal = () => {
-        setModal(true);
-    };
-
-    const HandleOnSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        const title = titleRef.current?.value;
-        if (!title) {
-            alert("Por favor, insira um título para a tarefa.");
-            return;
-        }
-        const date = Date.now();
-        const checked = false;
-        const newItem: ItemType = {
-            ItemTitle: title,
-            ItemData: date,
-            isChecked: checked
-        };
-        let listItems: ItemType[] = JSON.parse(localStorage.getItem("ListItems") || "[]");
-        listItems.push(newItem);
-        localStorage.setItem("ListItems", JSON.stringify(listItems));
-        titleRef.current!.value = "";
-        setModal(false);
-        window.location.reload(); 
-    };
-
+    const { modal, titleRef, HandleOpenModal, HandleOnSubmit } = useAddButtonAndFilter();
 
     return (
         <>
