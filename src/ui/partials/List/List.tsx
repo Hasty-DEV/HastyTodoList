@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import  { useState, useEffect } from 'react';
 import { ItemType } from "../../../data/@types/Item/Item.type";
 import { ListContainer } from "../../styles/List/List.style";
 import Item from "../../components/Item/Item";
@@ -10,7 +10,10 @@ const List = () => {
         const storedItems = localStorage.getItem("ListItems");
         if (storedItems) {
             const parsedItems: ItemType[] = JSON.parse(storedItems);
-            setItems(parsedItems);
+            setItems(parsedItems.map(item => ({
+                ...item,
+                isChecked: item.isChecked || false 
+            })));
         }
     }, []);
 
