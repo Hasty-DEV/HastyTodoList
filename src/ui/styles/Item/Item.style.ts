@@ -5,7 +5,7 @@ export const ItemContainer = styled.div`
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 15px;
-
+  
   input[type="checkbox"] {
     width: 20px;
     margin-right: 10px;
@@ -23,6 +23,6 @@ export const ItemText = styled.div`
 `;
 
 export const ItemData = styled.div`
-    font-size: 0.8rem;
-    font-weight: 400;
+  font-size: 0.8rem;
+  font-weight: 400;
 `;

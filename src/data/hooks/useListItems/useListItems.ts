@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ItemType } from "../../../data/@types/Item/Item.type";
 import { handleItemCheck } from '../../../data/services/ItemCheck/ItemCheck.service';
 import { handleDeleteItem } from '../../../data/services/DeleteItem/DeleteItem.service';
+ import { handleEditItem } from '../EditItem/EditItem.service';
 
 export const useListItems = () => {
     const [items, setItems] = useState<ItemType[]>([]);
@@ -30,9 +31,14 @@ export const useListItems = () => {
         handleDeleteItem(index, items, setItems);
     };
 
+    const handleEdit = (index: number, newItem: ItemType) => {  
+        handleEditItem(index, newItem, items, setItems); 
+    };
+
     return {
         items,
         handleCheck,
-        handleDelete
+        handleDelete,
+        handleEdit
     };
 };
