@@ -20,7 +20,7 @@ const AddButtonAndFilter = () => {
         e.preventDefault();
         const title = titleRef.current?.value;
         if (title) {
-              addItem({ ItemTitle: title, isChecked: false, ItemData: 0, onCheck: () => {}, onDelete: () => {}, onEditSubmit: () => {} });
+              addItem({ ItemTitle: title, isChecked: false, ItemData: Date.now(), onCheck: () => {}, onDelete: () => {}, onEditSubmit: () => {} });
             titleRef.current.value = '';
         }
     };
