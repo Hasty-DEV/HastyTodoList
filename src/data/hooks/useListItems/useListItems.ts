@@ -18,6 +18,12 @@ export const useListItems = () => {
         }
     }, []);
 
+    const addItem = (newItem: ItemType) => {
+        const updatedItems = [...items, newItem];
+        setItems(updatedItems);
+        localStorage.setItem("ListItems", JSON.stringify(updatedItems));
+    };
+
     const handleCheck = (index: number, isChecked: boolean) => {
         setItems(prevItems => {
             const updatedItems = [...prevItems];
@@ -31,12 +37,18 @@ export const useListItems = () => {
         handleDeleteItem(index, items, setItems);
     };
 
+
+
+
+
+    
     const handleEdit = (index: number, newItem: ItemType) => {  
         handleEditItem(index, newItem, items, setItems); 
     };
 
     return {
         items,
+        addItem,
         handleCheck,
         handleDelete,
         handleEdit
