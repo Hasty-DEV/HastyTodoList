@@ -8,7 +8,7 @@ const useAddButtonAndFilter = () => {
         setModal(true);
     };
 
-    const HandleOnSubmit = (e: FormEvent) => {
+    const HandleOnSubmit = (e: FormEvent, setItems: React.Dispatch<React.SetStateAction<any[]>>) => {
         e.preventDefault();
         const title = titleRef.current?.value;
         if (!title) {
@@ -22,12 +22,12 @@ const useAddButtonAndFilter = () => {
             ItemData: date,
             isChecked: checked
         };
-        let listItems = JSON.parse(localStorage.getItem("ListItems") || "[]");
-        listItems.push(newItem);
-        localStorage.setItem("ListItems", JSON.stringify(listItems));
+        const existingItems = JSON.parse(localStorage.getItem("ListItems") || "[]");
+        const updatedItems = [...existingItems, newItem];
+        localStorage.setItem("ListItems", JSON.stringify(updatedItems));
+        setItems(updatedItems);
         titleRef.current!.value = "";
         setModal(false);
-        window.location.reload();
     };
 
     return {

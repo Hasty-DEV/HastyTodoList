@@ -55,12 +55,12 @@ const AddButtonAndFilter = () => {
                 <Filter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
             </AddButtonAndFilterContainer>
             {modal && (
-                <form className="w-100 pt-2 pb-2 d-flex form-group" onSubmit={(e) => HandleOnSubmit(e)}>
-                    <input ref={titleRef} type="text" className="w-100 form-control" />
-                    <Button type="submit" className="mx-2">
-                        <FaPlus />
-                    </Button>
-                </form>
+               <form className="w-100 pt-2 pb-2 d-flex form-group" onSubmit={(e) => HandleOnSubmit(e, setItems)}>
+               <input ref={titleRef} type="text" className="w-100 form-control" />
+               <Button type="submit" className="mx-2">
+                   <FaPlus />
+               </Button>
+           </form>
             )}
             <List filteredItems={filteredItems} handleDeleteFilteredItem={handleDeleteFilteredItem} />
         </>
