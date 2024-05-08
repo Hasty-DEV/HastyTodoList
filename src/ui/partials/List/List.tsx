@@ -1,15 +1,17 @@
-
+// List.tsx
 import { ListContainer } from '../../styles/List/List.style';
 import Item from '../../components/Item/Item';
 import { useListItems } from '../../../data/hooks/useListItems/useListItems';
 import { ItemType } from '../../../data/@types/Item/Item.type';
 
+
 interface ListProps {
-    filteredItems: ItemType[] | undefined; // Defina o tipo como um array de ItemType ou undefined
+    filteredItems: ItemType[] | undefined;
+    handleDeleteFilteredItem?: (index: number) => void;
 }
 
-const List = ({ filteredItems }: ListProps) => {
-    const { handleCheck, handleDelete, handleEdit } = useListItems();
+const List = ({ filteredItems, handleDeleteFilteredItem }: ListProps) => {
+    const { handleCheck, handleEdit } = useListItems();
 
     return (
         <ListContainer>
@@ -20,7 +22,7 @@ const List = ({ filteredItems }: ListProps) => {
                         ItemTitle={item.ItemTitle}
                         ItemData={item.ItemData}
                         isChecked={item.isChecked}
-                        onDelete={() => handleDelete(index)}
+                        onDelete={() => handleDeleteFilteredItem && handleDeleteFilteredItem(index)} // Usando a função handleDeleteFilteredItem
                         onCheck={(isChecked) => handleCheck(index, isChecked)}
                         onEditSubmit={(editedTitle) => handleEdit(index, { ...item, ItemTitle: editedTitle })}
                     />

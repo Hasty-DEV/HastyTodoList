@@ -1,8 +1,8 @@
-import { HandleDeleteItemType } from "../../@types/HandleDeleteItem/HandleDeleteItem.type";
+import { ItemType } from "../../@types/Item/Item.type";
 
-export const handleDeleteItem: HandleDeleteItemType = (index, items, setItems) => {
-    const updatedItems = [...items];
+export const handleDeleteFilteredItem = (index: number, filteredItems: ItemType[], setFilteredItems: (updatedItems: ItemType[]) => void) => {
+    const updatedItems = [...filteredItems];
     updatedItems.splice(index, 1);
-    setItems(updatedItems);
+    setFilteredItems(updatedItems);
     localStorage.setItem("ListItems", JSON.stringify(updatedItems));
 };

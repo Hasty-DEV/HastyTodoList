@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ItemType } from "../../../data/@types/Item/Item.type";
 import { handleItemCheck } from '../../../data/services/ItemCheck/ItemCheck.service';
-import { handleDeleteItem } from '../../../data/services/DeleteItem/DeleteItem.service';
+import { handleDeleteFilteredItem } from '../../../data/services/DeleteItem/DeleteItem.service';
  import { handleEditItem } from '../EditItem/EditItem.service';
 
 export const useListItems = () => {
@@ -28,7 +28,7 @@ export const useListItems = () => {
     };
 
     const handleDelete = (index: number) => {
-        handleDeleteItem(index, items, setItems);
+        handleDeleteFilteredItem(index, items, setItems);
     };
 
     const handleEdit = (index: number, newItem: ItemType) => {  

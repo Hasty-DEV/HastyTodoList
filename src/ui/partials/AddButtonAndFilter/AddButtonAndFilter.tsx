@@ -1,18 +1,17 @@
-import  { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import Filter from '../../components/Filter/Filter';
 import { AddButtonAndFilterContainer } from '../../styles/AddButtonAndFilter/AddButtonAndFilter.style';
 import { Button } from 'react-bootstrap';
 import { FaPlus } from 'react-icons/fa';
 import useAddButtonAndFilter from '../../../data/hooks/useAddButtonAndFilter/useAddButtonAndFilter';
-
 import { ItemType } from '../../../data/@types/Item/Item.type';
 import List from '../List/List';
 
 const AddButtonAndFilter = () => {
     const { modal, titleRef, HandleOpenModal, HandleOnSubmit } = useAddButtonAndFilter();
     const [items, setItems] = useState<ItemType[]>([]);
-    const [selectedFilter, setSelectedFilter] = useState<string>('Todos'); // Estado do filtro selecionado
-    const [filteredItems, setFilteredItems] = useState<ItemType[]>([]); // Estado para os itens filtrados
+    const [selectedFilter, setSelectedFilter] = useState<string>('Todos');
+    const [filteredItems, setFilteredItems] = useState<ItemType[]>([]);
 
     useEffect(() => {
         const storedItems = localStorage.getItem('ListItems');
@@ -23,7 +22,6 @@ const AddButtonAndFilter = () => {
     }, []);
 
     useEffect(() => {
-        // Função para filtrar os itens baseado no filtro selecionado
         const filterItems = () => {
             switch (selectedFilter) {
                 case 'Pendentes':
@@ -36,9 +34,15 @@ const AddButtonAndFilter = () => {
             }
         };
 
-        // Atualiza os itens filtrados quando houver mudança nos itens ou no filtro selecionado
         setFilteredItems(filterItems());
     }, [items, selectedFilter]);
+
+    const handleDeleteFilteredItem = (index: number) => {
+        const updatedItems = [...filteredItems];
+        updatedItems.splice(index, 1);
+        setFilteredItems(updatedItems);
+        localStorage.setItem("ListItems", JSON.stringify(updatedItems));
+    };
 
     return (
         <>
@@ -58,9 +62,7 @@ const AddButtonAndFilter = () => {
                     </Button>
                 </form>
             )}
-
-            
-            <List filteredItems={filteredItems} />
+            <List filteredItems={filteredItems} handleDeleteFilteredItem={handleDeleteFilteredItem} />
         </>
     );
 };
