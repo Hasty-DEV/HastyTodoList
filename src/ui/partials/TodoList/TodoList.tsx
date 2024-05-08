@@ -8,7 +8,7 @@ const TodoList = () => {
     <TodoListContainer className="d-flex flex-column justify-content-center align-items-center">
       <Container>
         <AddButtonAndFilter />
-        <List />
+        <List filteredItems={undefined} />
       </Container>
     </TodoListContainer>
   );
